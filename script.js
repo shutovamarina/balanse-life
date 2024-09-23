@@ -1,7 +1,7 @@
-let workDuration = 20 * 60; // 20 минут в секундах
-let relaxDuration = 5 * 60; // 5 минут в секундах
+let workDuration = 20 * 60;
+let relaxDuration = 5 * 60;
 let workInterval, relaxInterval;
-let isRunning = false; // Флаг для отслеживания процесса
+let isRunning = false;
 
 // Добавляем аудио для сигнала
 const beep = new Audio('beep.mp3');
