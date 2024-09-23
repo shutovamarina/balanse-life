@@ -1,0 +1,144 @@
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #bff2f2;
+        color: #333333;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        text-align: center;
+        overflow: hidden;
+    }
+    
+    h1 {
+        margin: 0;
+        font-size: 40px;
+        color: #FF6F61;
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: 24px;
+    }
+    
+    .balanse {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .work {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #abf8e0;
+        border-radius: 30px;
+    }
+    
+    .relax {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #abf8e0;
+        border-radius: 30px;
+    }
+    
+    .work.active {
+        background-color: #f5f8f8;
+    }
+    
+    .relax.active {
+        background-color: #f5f8f8;
+    }
+    
+    .work-img {
+        width: 500px;
+    }
+    
+    .relax-img {
+        margin-top: 85px;
+        width: 400px;
+        padding: 60px 60px 60px 40px;
+    }
+    
+    .btn {
+        background-color: #FF6F61;
+        border: none;
+        padding: 10px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        /* margin-top: 20px; */
+    }
+    
+    .btn:hover {
+        background-color: #e0554e;
+    }
+    
+    #par-work,
+    #par-relax {
+        background-color: #FF6F61;
+        border: none;
+        padding: 10px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+        /*  margin-top: 20px; */
+    }
+    
+    @media (max-width: 1000px) {
+        .btn {
+            margin: 10px;
+        }
+        .work-img {
+            width: 180px;
+            margin-top: 0;
+            /* Уменьшаем ширину изображений */
+        }
+        .relax-img {
+            margin-top: 0;
+            padding: 0px 60px 10px 40px;
+            width: 180px;
+        }
+        h1 {
+            display: none;
+        }
+        .balanse {
+            flex-direction: column;
+            /* Переключаем в вертикальный вид */
+            justify-content: center;
+        }
+        .work,
+        .relax {
+            margin-bottom: 20px;
+        }
+        body {
+            overflow: auto;
+        }
+    }
+    
+    @media (max-width: 600px) {
+        .work-img,
+        .relax-img {
+            width: 180px;
+            /* Еще больше уменьшаем ширину изображений */
+        }
+        .balanse {
+            padding: 0 20px;
+            /* Добавляем немного отступов */
+        }
+    }
+    /* Добавляем медиазапрос для экранов менее 400px */
+    
+    @media (max-width: 400px) {
+        .work-img,
+        .relax-img {
+            width: 180px;
+            /* Уменьшаем изображение для очень маленьких экранов */
+        }
+        h2 {
+            font-size: 20px;
+        }
+    }
