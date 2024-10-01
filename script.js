@@ -1,30 +1,36 @@
-let workDuration = 20 * 60;
-let relaxDuration = 5 * 60;
+const timerWork = 20;
+const timerRelax = 5;
+let workDuration = timerWork * 60;
+let relaxDuration = timerRelax * 60;
 let workInterval, relaxInterval;
-let isRunning = false;
 
 // Добавляем аудио для сигнала
 const beep = new Audio('beep.mp3');
 
 // Получаем элементы таймеров и кнопок
-const workTimer = document.getElementById('par-work');
-const relaxTimer = document.getElementById('par-relax');
-const startBtn = document.getElementById('start-btn');
+const workTimer = document.querySelector("#par-work");
+const relaxTimer = document.querySelector("#par-relax");
+const startBtn = document.querySelector("#start-btn");
 
-// Функция для обновления отображения таймера
-function updateTimer(element, seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    element.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${sec < 10 ? '0' : ''}${sec}`;
+function calculateTime(element, seconds) {
+    let minutes = Math.floor(seconds / 60);
+    let sec = seconds % 60;
+    if (sec < 10) {
+        sec = "0" + sec;
+    }
+    if (minutes < 10) {
+        minutes = "0" + minutes;
+    }
+    element.textContent = `${minutes}:${sec}`;
 }
 
-// Функция для отсчёта времени
-function countdown(duration, element, callback, isWork) {
-    let timeLeft = duration;
+
+function countdown(duration, element, callback) {
+    let timer = duration;
     const interval = setInterval(() => {
-        if (timeLeft > 0) {
-            timeLeft--;
-            updateTimer(element, timeLeft);
+        if (timer > 0) {
+            timer--;
+            calculateTime(element, timer);
         } else {
             clearInterval(interval);
             beep.play(); // Проигрываем звуковой сигнал, когда таймер заканчивается
@@ -34,37 +40,26 @@ function countdown(duration, element, callback, isWork) {
     return interval; // Возвращаем интервал для возможности его остановки
 }
 
-// Функция для запуска цикла работы и отдыха
 function startWorkCycle() {
-    if (!isRunning) return; // Проверка на то, что процесс ещё активен
     document.querySelector('.work').classList.add('active'); // Меняем фон для работы
     workInterval = countdown(workDuration, workTimer, () => {
         document.querySelector('.work').classList.remove('active'); // Убираем фон после работы
         startRelaxCycle();
-    }, true);
+    });
 }
 
 function startRelaxCycle() {
-    if (!isRunning) return; // Проверка на то, что процесс ещё активен
     document.querySelector('.relax').classList.add('active'); // Меняем фон для отдыха
     relaxInterval = countdown(relaxDuration, relaxTimer, () => {
         document.querySelector('.relax').classList.remove('active'); // Убираем фон после отдыха
         startWorkCycle();
-    }, false);
+    });
 }
 
-// Функция для запуска процесса
 function startCycle() {
-    if (isRunning) return; // Если таймер уже запущен, ничего не делаем
-    isRunning = true;
-
-    // Запускаем цикл с работы
+    // Запускаем цикл с работы, если еще не работает
     startWorkCycle();
 }
 
 // Обработчик события для кнопки "Начать"
 startBtn.addEventListener('click', startCycle);
-
-// Инициализация таймеров при загрузке страницы
-updateTimer(workTimer, workDuration);
-updateTimer(relaxTimer, relaxDuration);

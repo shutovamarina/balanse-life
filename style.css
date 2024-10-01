@@ -12,7 +12,7 @@
     h1 {
         margin: 0;
         font-size: 40px;
-        color: #FF6F61;
+        /*  color: #FF6F61; */
         text-align: center;
     }
     
@@ -29,7 +29,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: #abf8e0;
+        background-color: #bff2f2/* #abf8e0 */
+        ;
         border-radius: 30px;
     }
     
@@ -37,7 +38,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: #abf8e0;
+        background-color: #bff2f2/* #abf8e0 */
+        ;
         border-radius: 30px;
     }
     
